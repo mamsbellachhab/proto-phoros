@@ -1,0 +1,4 @@
+# Vendored third-party scripts are loaded with a Subresource Integrity
+# hash (see web/landing/support.js REACT_SRI / REACT_DOM_SRI / BABEL_SRI).
+# Keep them byte-identical on checkout so the SRI check keeps passing.
+web/landing/vendor/* -text
