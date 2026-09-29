@@ -1151,6 +1151,13 @@
     const v = res ? res[url] : void 0;
     return typeof v === "string" && v ? { src: v } : { src: url, integrity: sri };
   }
+  function parentOrigin() {
+    try {
+      return document.referrer ? new URL(document.referrer).origin : "*";
+    } catch {
+      return "*";
+    }
+  }
 
   // src/external.ts
   var isCustomElementName = (n) => !n.includes(".") && n.includes("-");
@@ -1384,7 +1391,7 @@
     function postDesignMode(mode) {
       if (window.parent === window) return;
       try {
-        window.parent.postMessage({ type: "__dc_design_mode", mode }, "*");
+        window.parent.postMessage({ type: "__dc_design_mode", mode }, parentOrigin());
       } catch {
       }
     }
@@ -1862,7 +1869,7 @@
             propsMeta: r && r.propsMeta || null,
             preview: r && r.preview || null
           },
-          "*"
+          parentOrigin()
         );
       } catch {
       }
