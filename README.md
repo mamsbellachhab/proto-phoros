@@ -1,20 +1,16 @@
 <p align="center">
-  <img src="docs/logo.svg" alt="PROTO-PHØR0S" width="560">
+  <img src="docs/logo.svg" alt="PROTO-PHØR0S" width="160">
 </p>
 
-# PROTO-PHØR0S
+<h1 align="center">PROTO-PHØR0S</h1>
 
-*Platform for Resource Optimization & Tactical Orchestration -- Provisioning
-Hub for Operational Readiness & Orchestration Systems.*
+<p align="center">
+  <img alt="python" src="https://img.shields.io/badge/python-3.11%2B-blue">
+  <img alt="sqlite" src="https://img.shields.io/badge/database-SQLite-003B57">
+  <img alt="status" src="https://img.shields.io/badge/status-in%20progress-yellow">
+</p>
 
-Project structure. Full write-up once it's finished.
-
-```
-db/         schema.sql (SQLite DDL) and the generated database
-docs/       design docs
-data_gen/   synthetic data generator
-models/     ML models
-app/        dashboard and copilot
-web/landing/ marketing / demo landing page (mock data, no backend yet)
-tests/      validation scripts
-```
+<p align="center">
+  Fictional military logistics platform &mdash; inventory ledger, ML demand
+  forecasting, and an LLM copilot. Portfolio project, work in progress.
+</p>
