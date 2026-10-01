@@ -1,12 +1,22 @@
 from fastapi import Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
+import forecast
 import needs
 from auth import current_user, visible_warehouse_ids
 from db import get_connection
 
 app = FastAPI(title="proto-phoros")
-app.include_router(needs.router)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(needs.router)
+app.include_router(forecast.router)
 
 @app.get("/me")
 def me(user=Depends(current_user)):
