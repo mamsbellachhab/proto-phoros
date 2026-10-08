@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Archivo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth;scroll-padding-top:64px}body{margin:0;background:#08090a}a{color:#e6e7e3;text-decoration:none}a:hover{color:#fff}::selection{background:#e6e7e3;color:#08090a}input::placeholder{color:#767b78}@keyframes spinOnce{from{transform:rotate(0)}to{transform:rotate(360deg)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes breathe{50%{transform:scale(1.5)}}@keyframes marq{to{transform:translateX(-50%)}}@keyframes pulse{50%{opacity:.3}}@keyframes blink{50%{opacity:0}}@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style>
+</helmet>
+<div id="pp-root" style="background:#08090a;color:#e6e7e3;font-family:Archivo,sans-serif;min-height:100vh;overflow-x:hidden">
+  <div id="pp-progress" style="position:fixed;top:0;left:0;height:2px;width:0;background:#6fdc8c;z-index:60"></div>
+
+  <header style="position:fixed;top:0;left:0;right:0;z-index:20;background:#08090a;border-bottom:1px solid #1c1f21;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px max(24px,calc((100% - 1280px)/2))">
+    <a href="#top" style="display:flex;align-items:center;gap:12px;flex:none;line-height:0">
+      <svg aria-hidden="true" viewBox="0 0 200 200" fill="none" stroke="#e6e7e3" stroke-width="8" style="width:30px;height:30px;display:block"><path d="M100 20L169.3 60V140L100 180L30.7 140V60Z"></path><path d="M100 27V86M162.9 136.4L112.1 107M37.1 136.4L87.9 107"></path><circle cx="100" cy="100" r="36"></circle><circle cx="100" cy="100" r="58"></circle><circle cx="100" cy="100" r="14"></circle><g fill="#08090a"><circle cx="100" cy="20" r="10"></circle><circle cx="169.3" cy="140" r="10"></circle><circle cx="30.7" cy="140" r="10"></circle><circle cx="169.3" cy="60" r="10"></circle><circle cx="100" cy="180" r="10"></circle><circle cx="30.7" cy="60" r="10"></circle></g></svg>
+      <svg role="img" aria-label="PROTO-PHØR0S" viewBox="0 0 85 9" style="width:130px;display:block" shape-rendering="crispEdges">
+        <sc-for list="{{ logoRects }}" as="r" hint-placeholder-count="0"><rect x="{{ r.x }}" y="{{ r.y }}" width="1.02" height="1.02" fill="#e6e7e3"></rect></sc-for>
+      </svg>
+    </a>
+    <nav aria-label="Primary" style="display:flex;gap:clamp(14px,2.4vw,32px);align-items:center;flex-wrap:nowrap;justify-content:flex-end;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;white-space:nowrap">
+      <a href="#mission" style="display:{{ linkDisplay }};color:#8b8f8c" style-hover="color:#e6e7e3">Mission</a>
+      <a href="#modules" style="display:{{ linkDisplay }};color:#8b8f8c" style-hover="color:#e6e7e3">Modules</a>
+      <a href="#analytics" style="display:{{ linkDisplay }};color:#8b8f8c" style-hover="color:#e6e7e3">Analytics</a>
+      <a href="#contact" style="display:{{ linkDisplay }};color:#8b8f8c" style-hover="color:#e6e7e3">Contact</a>
+      <a href="#" onClick="{{ openDemo }}" style="border:1px solid #e6e7e3;padding:10px 16px;color:#e6e7e3" style-hover="background:#e6e7e3;color:#08090a">Try demo</a>
+    </nav>
+  </header>
+
+  <section id="top" style="position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 max(24px,calc((100% - 1280px)/2)) 64px;overflow:hidden;border-bottom:1px solid #1c1f21;background:linear-gradient(180deg,#0d0f10,#08090a)">
+    <div style="position:relative">
+      <div data-wipe="" style="clip-path:inset(0 100% 0 0);transition:clip-path 1.4s steps(24)">
+        <svg role="img" aria-label="PROTO-PHØR0S" viewBox="0 0 85 9" style="width:min(100%,1200px);display:block" shape-rendering="crispEdges">
+          <defs><pattern id="dth" width="0.5" height="0.5" patternUnits="userSpaceOnUse"><rect width="0.25" height="0.25" fill="#8b8f8c"></rect><rect x="0.25" y="0.25" width="0.25" height="0.25" fill="#8b8f8c"></rect></pattern></defs>
+          <g transform="translate(0.8,1.1)"><sc-for list="{{ logoRects }}" as="r" hint-placeholder-count="0"><rect x="{{ r.x }}" y="{{ r.y }}" width="1.02" height="1.02" fill="url(#dth)"></rect></sc-for></g>
+          <sc-for list="{{ logoRects }}" as="r" hint-placeholder-count="0"><rect x="{{ r.x }}" y="{{ r.y }}" width="1.02" height="1.02" fill="#e6e7e3"></rect></sc-for>
+        </svg>
+      </div>
+      <h1 data-reveal="" data-delay="500" style="opacity:0;transform:translateY(24px);font-weight:500;font-size:clamp(22px,2.6vw,34px);line-height:1.25;max-width:720px;margin:40px 0 12px">Military inventory that knows what it should hold, and tells you when it doesn't.</h1>
+      <p data-reveal="" data-delay="600" style="opacity:0;transform:translateY(24px);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#b6b9b5;margin:0 0 40px">Platform for Resource Optimization &amp; Tactical Orchestration</p>
+      <div data-reveal="" data-delay="700" style="opacity:0;transform:translateY(24px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase">
+          <a href="#" onClick="{{ openDemo }}" style="background:#e6e7e3;color:#08090a;padding:18px 28px" style-hover="background:#fff">Try demo</a>
+          <a href="#" onClick="{{ openEcho }}" style="border:1px solid #8b8f8c;padding:18px 28px" style-hover="border-color:#e6e7e3">Ask Echo</a>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:#b6b9b5"><span style="color:#6fdc8c;animation:pulse 1.6s infinite">●</span> {{ city }} &nbsp;{{ clock }}</div>
+      </div>
+    </div>
+  </section>
+
+  <div style="overflow:hidden;border-bottom:1px solid #1c1f21;padding:14px 0;white-space:nowrap;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:#8b8f8c">
+    <div aria-hidden="true" style="display:inline-flex;gap:48px;animation:marq 60s linear infinite;padding-left:48px">
+      <sc-for list="{{ ticker }}" as="t" hint-placeholder-count="0"><span><span style="color:{{ t.c }}">{{ t.a }}</span> {{ t.b }}</span></sc-for>
+      <sc-for list="{{ ticker }}" as="t" hint-placeholder-count="0"><span><span style="color:{{ t.c }}">{{ t.a }}</span> {{ t.b }}</span></sc-for>
+    </div>
+  </div>
+
+  <section id="mission" style="padding:120px max(24px,calc((100% - 1280px)/2));border-bottom:1px solid #1c1f21">
+    <div data-reveal="" style="opacity:0;transform:translateY(32px);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#8b8f8c;margin-bottom:24px">Mission</div>
+    <p data-reveal="" data-delay="120" style="opacity:0;transform:translateY(32px);font-weight:500;font-size:clamp(26px,3.6vw,48px);line-height:1.2;margin:0;max-width:1000px">Every vehicle, weapon and round, with every movement on record. Know what each unit holds, what it should hold, and what it will need next.</p>
+  </section>
+
+  <section style="position:relative;height:64vh;overflow:hidden;border-bottom:1px solid #1c1f21;background:linear-gradient(180deg,#08090a,#0d0f10)">
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;padding:0 max(24px,calc((100% - 1280px)/2))">
+      <div data-reveal="" style="opacity:0;transform:translateY(32px);text-align:right;font-weight:800;font-size:clamp(40px,7vw,104px);line-height:.95;text-transform:uppercase;letter-spacing:-2px">Every crate.<br>Accounted for.</div>
+    </div>
+  </section>
+
+  <section id="modules" style="padding:120px max(24px,calc((100% - 1280px)/2));border-bottom:1px solid #1c1f21">
+    <div data-reveal="" style="opacity:0;transform:translateY(32px);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#8b8f8c;margin-bottom:24px">Modules</div>
+    <h2 data-reveal="" data-delay="100" style="opacity:0;transform:translateY(32px);font-weight:800;font-size:clamp(32px,4.4vw,60px);line-height:1.02;text-transform:uppercase;letter-spacing:-1px;margin:0 0 56px;max-width:800px">Three layers on one ledger.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));border-top:1px solid #1c1f21;border-left:1px solid #1c1f21">
+      <sc-for list="{{ modules }}" as="s" hint-placeholder-count="3">
+        <div data-reveal="" data-delay="{{ s.delay }}" style="opacity:0;transform:translateY(40px);padding:32px;border-right:1px solid #1c1f21;border-bottom:1px solid #1c1f21;min-height:320px;display:flex;flex-direction:column;justify-content:space-between;gap:48px" style-hover="background:#0d0f10">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#6fdc8c">{{ s.tag }}</div>
+          <div>
+            <div style="font-weight:800;font-size:28px;line-height:1.1;text-transform:uppercase;margin-bottom:14px">{{ s.name }}</div>
+            <div style="color:#b6b9b5;font-size:16px;line-height:1.55">{{ s.desc }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="analytics" style="padding:120px max(24px,calc((100% - 1280px)/2));border-bottom:1px solid #1c1f21">
+    <div data-reveal="" style="opacity:0;transform:translateY(32px);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#8b8f8c;margin-bottom:24px">Analytics</div>
+    <h2 data-reveal="" data-delay="100" style="opacity:0;transform:translateY(32px);font-weight:800;font-size:clamp(32px,4.4vw,60px);line-height:1.02;text-transform:uppercase;letter-spacing:-1px;margin:0 0 56px;max-width:800px">Forecasts that read the calendar.</h2>
+    <div style="display:grid;grid-template-columns:{{ anaCols }};gap:16px">
+      <div data-reveal="" style="grid-column:1/-1;min-width:0;opacity:0;transform:translateY(40px);border:1px solid #1c1f21;background:#0d0f10;padding:28px">
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 24px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#8b8f8c;margin-bottom:24px"><span>{{ chartLabel }}</span><span style="display:flex;align-items:center;gap:20px"><span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;background:#e6e7e3"></span>Forecast</span><span style="display:flex;align-items:center;gap:8px"><span style="width:14px;height:2px;background:#6fdc8c"></span>Trend</span><span style="display:flex;align-items:center;gap:8px"><span style="width:14px;height:0;border-top:1px dashed #8b8f8c"></span>Average</span></span></div>
+        <div style="position:relative"><svg viewBox="0 0 640 250" style="width:100%;display:block" font-family="IBM Plex Mono" font-size="10">
+          <sc-for list="{{ grid }}" as="g" hint-placeholder-count="0"><line x1="40" x2="630" y1="{{ g.y }}" y2="{{ g.y }}" stroke="#1c1f21"></line></sc-for>
+          <sc-for list="{{ ex }}" as="e" hint-placeholder-count="0"><rect x="{{ e.x }}" y="20" width="{{ e.w }}" height="200" fill="#6fdc8c" opacity=".08"></rect><text x="{{ e.cx }}" y="14" fill="#6fdc8c" text-anchor="middle" letter-spacing="1">EXERCISE</text></sc-for>
+          <sc-for list="{{ bars }}" as="b" hint-placeholder-count="0"><rect data-grow="" data-delay="{{ b.d }}" x="{{ b.x }}" y="{{ b.y }}" width="34" height="{{ b.h }}" fill="#e6e7e3" style="transform-box:fill-box;transform-origin:bottom;transform:scaleY(0)"></rect></sc-for>
+          <line x1="40" x2="630" y1="{{ avgY }}" y2="{{ avgY }}" stroke="#8b8f8c" stroke-dasharray="4 4"></line>
+          <path d="{{ fcPath }}" data-draw="" pathLength="1" fill="none" stroke="#6fdc8c" stroke-width="2" style="stroke-dasharray:1;stroke-dashoffset:1"></path>
+          <sc-for list="{{ fcDots }}" as="p" hint-placeholder-count="0"><circle cx="{{ p.x }}" cy="{{ p.y }}" r="3" fill="#6fdc8c"></circle></sc-for>
+        </svg>
+        <sc-for list="{{ grid }}" as="g" hint-placeholder-count="0"><div style="position:absolute;left:0;width:{{ g.w }}%;top:{{ g.tp }}%;transform:translateY(-50%);text-align:right;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#767b78">{{ g.v }}</div></sc-for>
+        <sc-for list="{{ months }}" as="m" hint-placeholder-count="0"><div style="position:absolute;left:{{ m.lp }}%;top:{{ m.tp }}%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8b8f8c">{{ m.t }}</div></sc-for>
+        </div>
+        <p style="font-size:15px;line-height:1.55;color:#b6b9b5;margin:20px 0 0;max-width:640px">Ensemble of a gradient-boosted model and exponential smoothing, trained on the full three-year movement history for this item and warehouse.</p>
+      </div>
+      <div data-reveal="" data-delay="100" style="opacity:0;transform:translateY(40px);border:1px solid #1c1f21;background:#0d0f10;padding:28px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#8b8f8c;margin-bottom:28px">Vehicles by type</div>
+        <div style="position:relative;width:200px;margin:0 auto 28px">
+          <svg viewBox="0 0 42 42" style="width:100%;display:block;transform:rotate(-90deg)"><circle cx="21" cy="21" r="15.9155" fill="none" stroke="#141719" stroke-width="5"></circle>
+            <sc-for list="{{ donut }}" as="d" hint-placeholder-count="0"><circle data-dash="{{ d.dash }}" cx="21" cy="21" r="15.9155" fill="none" stroke="{{ d.c }}" stroke-width="5" stroke-dashoffset="{{ d.off }}" style="stroke-dasharray:0 100;transition:stroke-dasharray 1.2s cubic-bezier(.2,.7,.2,1) {{ d.d }}ms"></circle></sc-for>
+          </svg>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-weight:800;font-size:34px">63</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#8b8f8c">VEHICLES</div></div>
+        </div>
+        <sc-for list="{{ donut }}" as="d" hint-placeholder-count="4"><div style="display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid #1c1f21;font-size:15px"><span style="display:flex;align-items:center;gap:12px"><span style="width:10px;height:10px;background:{{ d.c }};flex:none"></span>{{ d.n }}</span><span style="font-family:'IBM Plex Mono',monospace;color:#b6b9b5">{{ d.k }} · {{ d.p }}%</span></div></sc-for>
+      </div>
+      <div data-reveal="" data-delay="200" style="opacity:0;transform:translateY(40px);border:1px solid #1c1f21;background:#0d0f10;padding:28px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#8b8f8c;margin-bottom:28px">On hand vs ledger</div>
+        <sc-for list="{{ units }}" as="u" hint-placeholder-count="4"><div style="margin-bottom:24px"><div style="display:flex;justify-content:space-between;font-size:15px;margin-bottom:10px"><span>{{ u.n }}</span><span style="font-family:'IBM Plex Mono',monospace;color:{{ u.c }}">{{ u.p }}%</span></div><div style="height:6px;background:#141719"><div data-grow="" data-delay="{{ u.d }}" style="height:6px;width:{{ u.p }}%;background:{{ u.c }};transform:scaleX(0);transform-origin:left"></div></div></div></sc-for>
+        <p style="font-size:15px;line-height:1.55;color:#b6b9b5;margin:8px 0 0">Below 95% opens an anomaly review: missing equipment or unexplained consumption.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="access" style="padding:120px max(24px,calc((100% - 1280px)/2));border-bottom:1px solid #1c1f21">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:48px 64px;margin-bottom:64px;align-items:end">
+      <div>
+        <div data-reveal="" style="opacity:0;transform:translateY(32px);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#8b8f8c;margin-bottom:24px">Access by unit</div>
+        <h2 data-reveal="" data-delay="100" style="opacity:0;transform:translateY(32px);font-weight:800;font-size:clamp(32px,4.4vw,60px);line-height:1.02;text-transform:uppercase;letter-spacing:-1px;margin:0 0 24px">Each unit sees its own. Command sees all.</h2>
+        <p data-reveal="" data-delay="150" style="opacity:0;transform:translateY(32px);color:#b6b9b5;font-size:17px;line-height:1.55;max-width:480px;margin:0">A battalion sees only its own stock. A division sees everything rolled up from the units beneath it.</p>
+      </div>
+      <div>
+        <sc-for list="{{ tree }}" as="n" hint-placeholder-count="4">
+          <div data-reveal="" data-delay="{{ n.delay }}" style="opacity:0;transform:translateX(-24px);margin-left:{{ n.indent }}px;padding:14px 0;border-top:1px solid #1c1f21;display:flex;justify-content:space-between;gap:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px"><span>{{ n.name }}</span><span style="color:#6fdc8c">{{ n.scope }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+    <div data-reveal="" style="opacity:0;transform:translateY(40px);border:1px solid #1c1f21;background:#0d0f10;min-width:0">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding:0 20px;border-bottom:1px solid #1c1f21;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:#8b8f8c">
+        <div style="display:flex;gap:4px"><sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3"><a href="#" onClick="{{ t.go }}" style="padding:18px 16px;color:{{ t.col }};border-bottom:2px solid {{ t.bd }};margin-bottom:-1px;text-transform:uppercase">{{ t.n }}</a></sc-for></div>
+        <span style="color:#6fdc8c"><span style="animation:pulse 1.6s infinite">●</span> 2ND BN · LIVE</span>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) 120px 120px 72px;gap:12px;padding:14px 20px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;color:#767b78"><span>ASSET</span><span style="text-align:right">EXPECTED</span><span style="text-align:right">HAVE</span><span style="text-align:right">Δ</span></div>
+      <sc-for list="{{ ledger }}" as="r" hint-placeholder-count="4">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) 120px 120px 72px;gap:12px;padding:16px 20px;border-top:1px solid #1c1f21;font-family:'IBM Plex Mono',monospace;font-size:14px;color:{{ r.color }}"><span>{{ r.name }}</span><span style="text-align:right">{{ r.exp }}</span><span style="text-align:right">{{ r.have }}</span><span style="text-align:right">{{ r.delta }}</span></div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="contact" style="padding:120px max(24px,calc((100% - 1280px)/2));border-bottom:1px solid #1c1f21">
+    <div data-reveal="" style="opacity:0;transform:translateY(32px);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#8b8f8c;margin-bottom:24px">Contact</div>
+    <h2 data-reveal="" data-delay="100" style="opacity:0;transform:translateY(32px);font-weight:800;font-size:clamp(32px,4.4vw,60px);line-height:1.02;text-transform:uppercase;letter-spacing:-1px;margin:0 0 32px;max-width:800px">See it on your own data.</h2>
+    <a data-reveal="" data-delay="150" href="mailto:contact@proto-phros.com" style="opacity:0;transform:translateY(32px);display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:clamp(16px,2vw,24px);border-bottom:1px solid #8b8f8c;padding-bottom:6px" style-hover="color:#6fdc8c;border-color:#6fdc8c">contact@proto-phros.com</a>
+  </section>
+
+  <footer style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:28px max(24px,calc((100% - 1280px)/2));font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:#8b8f8c">
+    <span>© 2026 PROTO-PHØR0S</span><span>Fictional system. No real data.</span>
+  </footer>
+
+  <div aria-hidden="true" onClick="{{ closeEcho }}" style="position:fixed;inset:0;z-index:39;background:rgba(4,5,5,.6);opacity:{{ panelOp }};pointer-events:{{ panelEv }};transition:opacity .4s"></div>
+  <div id="echo-panel" role="dialog" aria-modal="true" aria-label="Echo, logistics analyst" style="position:fixed;left:50%;top:50%;width:min(560px,calc(100vw - 32px));z-index:40;background:#0d0f10;border:1px solid #2a2e30;border-radius:24px;overflow:hidden;max-height:calc(100vh - 32px);display:flex;flex-direction:column;opacity:{{ panelOp }};transform:{{ panelT }};pointer-events:{{ panelEv }};transition:opacity .4s ease .25s,transform 1s cubic-bezier(.22,1,.36,1) .2s">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #1c1f21">
+      <div style="display:flex;align-items:center;gap:12px"><div style="width:34px;height:34px;animation:{{ spinAnim }}"><svg aria-hidden="true" viewBox="0 0 200 200" fill="none" stroke="#e6e7e3" stroke-width="7" style="width:100%;height:100%;display:block"><g style="transform-box:view-box;transform-origin:50% 50%;animation:spin {{ ringDur }} linear infinite"><path d="M100 20L169.3 60V140L100 180L30.7 140V60Z"></path></g><g style="transform-box:view-box;transform-origin:50% 50%;animation:spin {{ ringDur }} linear infinite reverse"><path d="M100 27V86M162.9 136.4L112.1 107M37.1 136.4L87.9 107"></path></g><circle cx="100" cy="100" r="36"></circle><circle cx="100" cy="100" r="58"></circle><circle cx="100" cy="100" r="14" style="transform-box:view-box;transform-origin:50% 50%;animation:breathe 2.4s ease-in-out infinite"></circle><g fill="#0d0f10"><circle cx="100" cy="20" r="9"></circle><circle cx="169.3" cy="140" r="9"></circle><circle cx="30.7" cy="140" r="9"></circle><circle cx="169.3" cy="60" r="9"></circle><circle cx="100" cy="180" r="9"></circle><circle cx="30.7" cy="60" r="9"></circle></g></svg></div><svg aria-hidden="true" viewBox="0 0 27 7" style="height:16px;display:block" shape-rendering="crispEdges"><sc-for list="{{ echoRects }}" as="r" hint-placeholder-count="0"><rect x="{{ r.x }}" y="{{ r.y }}" width="1.02" height="1.02" fill="#e6e7e3"></rect></sc-for></svg><div style="font-size:14px;color:#8b8f8c">your logistics analyst</div></div>
+      <a href="#" onClick="{{ closeEcho }}" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:#b6b9b5" style-hover="color:#e6e7e3">CLOSE</a>
+    </div>
+    <div id="echo-scroll" role="log" aria-live="polite" style="flex:1;min-height:120px;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:18px">
+      <sc-for list="{{ msgs }}" as="m" hint-placeholder-count="0">
+        <div style="align-self:{{ m.align }};max-width:92%">
+          <sc-if value="{{ m.hasTool }}" hint-placeholder-val="{{ false }}"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#767b78;margin-bottom:8px;word-break:break-word">▸ {{ m.tool }}</div></sc-if>
+          <div style="font-size:15px;line-height:1.5;padding:12px 16px;border-radius:18px;background:{{ m.bg }};color:{{ m.fg }}">{{ m.text }}</div>
+        </div>
+      </sc-for>
+      <sc-if value="{{ typing }}" hint-placeholder-val="{{ false }}"><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:#6fdc8c">ECHO IS CHECKING THE LEDGER <span style="animation:blink 1s steps(1) infinite">█</span></div></sc-if>
+    </div>
+    <div style="padding:0 20px 16px;display:flex;flex-wrap:wrap;gap:8px">
+      <sc-for list="{{ chips }}" as="c" hint-placeholder-count="0"><a href="#" onClick="{{ c.go }}" style="border:1px solid #2a2e30;border-radius:999px;padding:8px 14px;font-size:14px;color:#b6b9b5" style-hover="border-color:#6fdc8c;color:#e6e7e3">{{ c.t }}</a></sc-for>
+    </div>
+    <div style="display:flex;align-items:center;margin:0 16px 16px;border:1px solid #2a2e30;border-radius:18px;overflow:hidden">
+      <input id="echo-input" aria-label="Message Echo" maxlength="300" autocomplete="off" spellcheck="false" value="{{ input }}" onChange="{{ onInput }}" onKeyDown="{{ onKey }}" placeholder="Ask Echo…" style="flex:1;min-width:0;background:transparent;border:0;outline:0;color:#e6e7e3;font-family:'IBM Plex Mono',monospace;font-size:13px;padding:18px 20px">
+      <a href="#" onClick="{{ sendClick }}" style="padding:18px 20px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:#6fdc8c">SEND</a>
+    </div>
+  </div>
+  <a id="echo-launcher" role="button" href="#" onClick="{{ toggleEcho }}" aria-label="Open Echo" style="position:fixed;left:0;right:0;margin:0 auto;width:max-content;bottom:24px;z-index:41;height:44px;padding:0 20px 0 14px;border-radius:14px;background:#0d0f10;border:1px solid #2a2e30;display:flex;align-items:center;justify-content:center;gap:12px;opacity:{{ launcherOp }};transform:{{ launcherT }};pointer-events:{{ launcherEv }};transition:transform 1s cubic-bezier(.65,0,.35,1),opacity .6s ease,border-color .2s" style-hover="border-color:#6fdc8c;transform:scale(1.15)">
+    <div style="width:24px;height:24px;flex:none;display:flex"><svg aria-hidden="true" viewBox="0 0 200 200" fill="none" stroke="#e6e7e3" stroke-width="7" style="width:100%;height:100%;display:block"><g style="transform-box:view-box;transform-origin:50% 50%;animation:spin {{ ringDur }} linear infinite"><path d="M100 20L169.3 60V140L100 180L30.7 140V60Z"></path></g><g style="transform-box:view-box;transform-origin:50% 50%;animation:spin {{ ringDur }} linear infinite reverse"><path d="M100 27V86M162.9 136.4L112.1 107M37.1 136.4L87.9 107"></path></g><circle cx="100" cy="100" r="36"></circle><circle cx="100" cy="100" r="58"></circle><circle cx="100" cy="100" r="14" style="transform-box:view-box;transform-origin:50% 50%;animation:breathe 2.4s ease-in-out infinite"></circle><g fill="#0d0f10"><circle cx="100" cy="20" r="9"></circle><circle cx="169.3" cy="140" r="9"></circle><circle cx="30.7" cy="140" r="9"></circle><circle cx="169.3" cy="60" r="9"></circle><circle cx="100" cy="180" r="9"></circle><circle cx="30.7" cy="60" r="9"></circle></g></svg></div>
+    <svg aria-hidden="true" viewBox="0 0 27 7" style="height:12px;display:block" shape-rendering="crispEdges"><sc-for list="{{ echoRects }}" as="r" hint-placeholder-count="0"><rect x="{{ r.x }}" y="{{ r.y }}" width="1.02" height="1.02" fill="#e6e7e3"></rect></sc-for></svg>
+  </a>
+
+  <sc-if value="{{ demoOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;background:rgba(4,5,5,.92);z-index:70;display:flex;align-items:center;justify-content:center;padding:24px">
+      <div role="dialog" aria-modal="true" aria-label="Demo session" style="width:min(760px,100%);border:1px solid #2a2e30;background:#0d0f10">
+        <div style="display:flex;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #1c1f21;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:#8b8f8c"><span>PROTO-PHØR0S · DEMO SESSION</span><a href="#" onClick="{{ closeDemo }}" style="color:#e6e7e3">CLOSE</a></div>
+        <div style="padding:24px 20px;min-height:280px;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.9;color:#6fdc8c">
+          <sc-for list="{{ lines }}" as="l" hint-placeholder-count="0"><div>{{ l }}</div></sc-for>
+          <span style="animation:blink 1s steps(1) infinite">█</span>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const ECHO_API = "http://127.0.0.1:8000";
+const DEMO_USER = "admin";
+const ECHO_TIMEOUT_MS = 120000;
+class Component extends DCLogic {
+  state = { demoOpen: false, lines: [], clock: "", city: "", narrow: false, showL: false, ledgerTab: 0, echoOpen: false, typing: false, input: "", live: null,
+    msgs: [{ who: "ECHO", text: "Echo online. Full ledger, every unit. If it's not on record, I won't tell you it exists." }] };
+  C = { A: "#6fdc8c", W: "#d9a441", R: "#e0574a", T: "#e6e7e3", M: "#b6b9b5" };
+  G = {
+    P:["111110","011011","011011","011110","011000","011000","111100"],
+    R:["111110","011011","011011","011110","011011","011011","111001"],
+    O:["011110","110011","110011","110011","110011","110011","011110"],
+    T:["111111","101101","001100","001100","001100","001100","011110"],
+    H:["111011","011010","011010","011110","011010","011010","111011"],
+    "Ø":["011110","110011","110111","111011","111011","110011","011110"],
+    "0":["011110","110011","110111","110011","111011","110011","011110"],
+    S:["011111","110000","110000","011110","000011","000011","111110"],
+    E:["111111","011001","011010","011110","011010","011001","111111"],
+    C:["011111","110001","110000","110000","110000","110001","011111"],
+    "-":["000000","000000","000000","111111","000000","000000","000000"]
+  };
+  DATA = this.buildData();
+
+  logo(str) {
+    const out = []; let cx = 0;
+    for (const ch of str) {
+      const g = this.G[ch];
+      if (g) g.forEach((row, y) => { for (let x = 0; x < row.length; x++) if (row[x] === "1") out.push({ x: cx + x, y }); });
+      cx += 7;
+    }
+    return out;
+  }
+  buildData() {
+    const { A, W, R, T, M } = this.C;
+    const Y = v => 220 - v * 2, X = i => 76 + i * 73;
+    const act = [42,38,55,81,47,44,96,null], fc = [40,40,52,78,50,46,92,71], mo = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG"];
+    const known = act.filter(v => v != null), avg = Math.round(known.reduce((a, b) => a + b, 0) / known.length);
+    const vehicles = [["M1152 HMMWV",24,T],["M1083 FMTV",16,A],["M1240A1 M-ATV",10,"#8b8f8c"],["M2A2 Bradley",13,"#4a4f4c"]];
+    const total = vehicles.reduce((a, v) => a + v[1], 0);
+    let acc = 0;
+    const z = (name, exp, have, delta, color) => ({ name, exp, have, delta, color });
+    return {
+      logoRects: this.logo("PROTO-PHØR0S"), echoRects: this.logo("ECHO"),
+      chart: {
+        grid: [0,25,50,75,100].map(v => ({ y: Y(v), tp: Y(v) / 2.5, w: 4.4, v })),
+        ex: [3,6].map(i => ({ x: X(i) - 36, w: 73, cx: X(i) })),
+        bars: act.map((v, i) => v == null ? null : { x: X(i) - 17, y: Y(v), h: v * 2, d: i * 80 }).filter(Boolean),
+        months: mo.map((t, i) => ({ lp: X(i) / 6.4, tp: 91, t })),
+        avgY: Y(avg),
+        fcPath: fc.map((v, i) => (i ? "L" : "M") + X(i) + " " + Y(v)).join(" "),
+        fcDots: fc.map((v, i) => ({ x: X(i), y: Y(v) }))
+      },
+      total,
+      donut: vehicles.map(([n, k, c], i) => { const share = k / total * 100, o = { n, k, c, p: Math.round(share), dash: (share - .8) + " " + (100 - share + .8), off: -acc, d: i * 150 }; acc += share; return o; }),
+      units: [["1ST BN",99],["2ND BN",97],["3RD BN",94],["4TH BN",98]].map(([n, p], i) => ({ n, p, c: p < 95 ? R : A, d: i * 120 })),
+      ticker: [{a:"OUT",c:M,b:"12× M1152 HMMWV → 2 BN / WH-03"},{a:"IN",c:M,b:"40,000 rds 5.56×45 M855A1 ← DEPOT NORTH"},{a:"XFER",c:M,b:"6× M240B 3 BN → 2 BN"},{a:"ALERT",c:R,b:"14 rds 5.56×45 unaccounted / WH-03"},{a:"FCST",c:A,b:"M1083 FMTV brake pads ×12 for next inspection"},{a:"RETURN",c:M,b:"2× M2A2 Bradley from maintenance"},{a:"OUT",c:M,b:"96 rds 155mm M795 → Firing range 4"}],
+      tree: [{name:"1ST DIVISION",scope:"ALL UNITS",indent:0,delay:0},{name:"1ST BRIGADE",scope:"3 BN",indent:20,delay:100},{name:"2ND BATTALION",scope:"OWN DATA",indent:40,delay:200},{name:"3RD BATTALION",scope:"OWN DATA",indent:40,delay:300}],
+      ledgers: [
+        [z("M1152 HMMWV","24","24","0",M),z("M1083 FMTV truck","18","16","−2",W),z("M1240A1 M-ATV","10","10","0",M),z("M2A2 Bradley","14","13","−1",W)],
+        [z("M4A1 carbine","310","310","0",M),z("M240B machine gun","12","11","−1",W),z("M249 SAW","36","36","0",M),z("M2 .50 cal","8","8","0",M)],
+        [z("5.56×45 M855A1","48,000","47,986","−14",R),z("7.62×51 M80","20,000","20,000","0",M),z("12.7×99 M33","6,400","6,400","0",M),z("155mm M795","240","240","0",M)]
+      ],
+      tabNames: ["Vehicles","Weapons","Ammunition"],
+      modules: [
+        { tag: "Ledger", name: "Stock, computed", desc: "Stock is rebuilt from the full movement history, never a stored count. See what a unit holds against what it should hold, across vehicles, weapons and ammunition.", delay: 0 },
+        { tag: "Forecast", name: "Demand, predicted", desc: "After an inspection, the model lists the parts you will need. Ammunition and spares demand follows exercise schedules and weather. Missing gear and unexplained consumption are flagged.", delay: 120 },
+        { tag: "Echo", name: "Ask, and it answers", desc: "Echo queries the ledger through tool calls and searches manuals and tender paperwork. Every answer is scoped to your unit.", delay: 240 }
+      ],
+      demo: ["> boot proto-phros --mode=demo","[ OK ] link established: 3 units","[ OK ] scope: 2nd Battalion, own data only","[ OK ] ledger replayed: 48,212 movements","[ !! ] anomaly: 14 rds 5.56x45 M855A1 unaccounted, WH-03","[ OK ] forecast: M1083 brake pads x12 needed after inspection","[ OK ] echo online","> awaiting operator input"],
+      chipTexts: ["How much 5.56mm ammunition do we have?","Any pending supply requests?","Which vehicles are in repair?","Demand forecast for 5.56mm ammo"]
+    };
+  }
+
+  componentDidMount() {
+    const root = document.getElementById("pp-root"); if (!root) return;
+    this.root = root; this.timers = new Set();
+    this.q = sel => Array.from(root.querySelectorAll(sel));
+    this.reduce = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+    let tz = ""; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+    const city = (tz.split("/").pop() || "").replace(/_/g, " ").toUpperCase();
+    const tick = () => this.setState({ clock: new Date().toLocaleTimeString("en-GB"), city }); tick();
+    this.ck = setInterval(tick, 1000);
+
+    this.onResize = () => { const n = innerWidth < 860; if (n !== this.state.narrow) this.setState({ narrow: n }); };
+    window.addEventListener("resize", this.onResize); this.onResize();
+    this.onKeyDown = e => { if (e.key === "Escape") { if (this.state.demoOpen) this.closeDemo(); else if (this.state.echoOpen) this.closeEcho(); } };
+    window.addEventListener("keydown", this.onKeyDown);
+
+    const show = (el, d) => { el.style.transition = this.reduce ? "none" : "opacity .9s cubic-bezier(.2,.7,.2,1) " + d + "ms, transform .9s cubic-bezier(.2,.7,.2,1) " + d + "ms"; el.style.opacity = 1; el.style.transform = "none"; };
+    const grow = (el, d) => {
+      if (el.hasAttribute("data-dash")) el.style.strokeDasharray = el.dataset.dash;
+      else if (el.hasAttribute("data-draw")) { el.style.transition = this.reduce ? "none" : "stroke-dashoffset 1.8s ease-out .3s"; el.style.strokeDashoffset = 0; }
+      else { el.style.transition = this.reduce ? "none" : "transform .9s cubic-bezier(.2,.7,.2,1) " + d + "ms"; el.style.transform = "none"; }
+    };
+    const rev = this.q("[data-reveal]"), grw = this.q("[data-grow],[data-dash],[data-draw]");
+    if (this.reduce || !("IntersectionObserver" in window)) {
+      rev.forEach(el => show(el, 0)); grw.forEach(el => grow(el, 0));
+    } else {
+      this.io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; show(e.target, +(e.target.dataset.delay || 0)); this.io.unobserve(e.target); }), { threshold: .15 });
+      this.io2 = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; grow(e.target, +(e.target.dataset.delay || 0)); this.io2.unobserve(e.target); }), { threshold: .3 });
+      rev.forEach(el => this.io.observe(el)); grw.forEach(el => this.io2.observe(el));
+    }
+    const wipe = this.q("[data-wipe]")[0];
+    if (wipe) { if (this.reduce) wipe.style.clipPath = "none"; else this.later(() => { wipe.style.clipPath = "inset(0 0 0 0)"; }, 200); }
+
+    this.pars = this.q("[data-par]"); this.bar = document.getElementById("pp-progress"); this.ticking = false;
+    this.onScroll = () => { if (this.ticking) return; this.ticking = true; requestAnimationFrame(() => { this.ticking = false; this.update(); }); };
+    window.addEventListener("scroll", this.onScroll, { passive: true }); this.update();
+    this.sync();
+    this.loadLive();
+  }
+  async apiGet(path) {
+    const res = await fetch(ECHO_API + path, { headers: { "x-username": DEMO_USER } });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    return res.json();
+  }
+  async loadLive() {
+    try {
+      const [vehicles, weapons, stock, forecast] = await Promise.all([
+        this.apiGet("/inventory/vehicles"),
+        this.apiGet("/inventory/weapons"),
+        this.apiGet("/inventory/stock"),
+        this.apiGet("/forecast/demand?item_id=26"),
+      ]);
+      this.setState({ live: this.buildLive(vehicles, weapons, stock, forecast) });
+    } catch (e) {
+      console.warn("[proto-phoros] backend not reachable, showing illustrative data:", e);
+    }
+  }
+  buildLive(vehicles, weapons, stock, forecast) {
+    const { A, W, R, T, M } = this.C;
+    const PALETTE = [T, A, "#8b8f8c", "#4a4f4c", "#767b78", W];
+    const groupBy = (rows, key) => {
+      const m = new Map();
+      rows.forEach(r => { const k = r[key] || "unknown"; m.set(k, (m.get(k) || []).concat(r)); });
+      return m;
+    };
+    const fmt = s => String(s).replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+    const statusLedger = (rows, key) => [...groupBy(rows, key).entries()].map(([name, rs]) => {
+      const exp = rs.length, have = rs.filter(r => r.status === "active").length, delta = have - exp;
+      return { name: fmt(name), exp: String(exp), have: String(have), delta: (delta > 0 ? "+" : "") + delta, color: delta === 0 ? M : W };
+    });
+
+    const total = vehicles.length;
+    let acc = 0;
+    const donut = [...groupBy(vehicles, "model").entries()].map(([n, rs], i) => {
+      const k = rs.length, share = total ? k / total * 100 : 0;
+      const o = { n, k, c: PALETTE[i % PALETTE.length], p: Math.round(share), dash: (share - .8) + " " + (100 - share + .8), off: -acc, d: i * 150 };
+      acc += share;
+      return o;
+    });
+
+    const ammo = stock.filter(r => r.category === "ammunition");
+    const ammoLedger = [...groupBy(ammo, "item_name").entries()].map(([n, rs]) => {
+      const have = rs.reduce((a, r) => a + r.on_hand_qty, 0);
+      const exp = rs.reduce((a, r) => a + (r.authorized_qty || 0), 0);
+      const min = rs.reduce((a, r) => a + (r.minimum_qty || 0), 0);
+      const delta = have - exp;
+      const color = have < min ? R : have < exp ? W : M;
+      return { name: n, exp: String(exp), have: String(have), delta: (delta > 0 ? "+" : "") + delta, color };
+    });
+
+    const whMap = new Map();
+    stock.forEach(r => {
+      if (!whMap.has(r.warehouse_id)) whMap.set(r.warehouse_id, { name: r.warehouse_name, have: 0, exp: 0 });
+      const e = whMap.get(r.warehouse_id);
+      e.have += r.on_hand_qty; e.exp += (r.authorized_qty || 0);
+    });
+    const units = [...whMap.values()].filter(e => e.name !== "Central Depot").map((e, i) => {
+      const p = e.exp ? Math.round(e.have / e.exp * 100) : 100;
+      return { n: e.name.replace(" Supply Point", ""), p, c: p < 95 ? R : A, d: i * 80 };
+    });
+
+    const series = forecast.filter(r => Number(r.warehouse_id) === 3).sort((a, b) => a.month.localeCompare(b.month));
+    const vals = series.map(r => Number(r.ensemble_forecast));
+    const maxV = Math.max(1, ...vals);
+    const X = i => 76 + i * 73;
+    const scaleY = v => 220 - (v / maxV) * 190;
+    const months = series.map(r => new Date(r.month).toLocaleString("en", { month: "short" }).toUpperCase());
+    const avg = vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : 0;
+    const chart = {
+      grid: [0, .25, .5, .75, 1].map(f => ({ y: scaleY(f * maxV), tp: scaleY(f * maxV) / 2.5, w: 4.4, v: Math.round(f * maxV) })),
+      ex: [],
+      bars: vals.map((v, i) => ({ x: X(i) - 17, y: scaleY(v), h: 220 - scaleY(v), d: i * 80 })),
+      months: months.map((t, i) => ({ lp: X(i) / 6.4, tp: 91, t })),
+      avgY: scaleY(avg),
+      fcPath: vals.map((v, i) => (i ? "L" : "M") + X(i) + " " + scaleY(v)).join(" "),
+      fcDots: vals.map((v, i) => ({ x: X(i), y: scaleY(v) }))
+    };
+
+    return {
+      donut, total, units, chart,
+      chartLabel: "5.56mm Ball Ammunition · Monthly demand forecast · 2nd Battalion, 1st Brigade",
+      ledgers: [statusLedger(vehicles, "model"), statusLedger(weapons, "type"), ammoLedger]
+    };
+  }
+  update() {
+    const y = window.scrollY, h = document.documentElement;
+    const sh = y > 240; if (sh !== this.state.showL) this.setState({ showL: sh });
+    if (this.bar) this.bar.style.width = (y / Math.max(1, h.scrollHeight - innerHeight) * 100) + "%";
+    if (this.reduce) return;
+    this.pars.forEach(el => {
+      const r = el.parentElement.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > innerHeight + 200) return;
+      el.style.transform = "translateY(" + ((r.top + r.height / 2 - innerHeight / 2) * -parseFloat(el.dataset.par)) + "px)";
+    });
+  }
+  later(fn, ms) { const t = setTimeout(() => { this.timers.delete(t); fn(); }, ms); this.timers.add(t); return t; }
+  sync() {
+    const prev = this.snap || {}, st = this.state, panel = document.getElementById("echo-panel"), lau = document.getElementById("echo-launcher");
+    if (panel) { panel.inert = !st.echoOpen; panel.setAttribute("aria-hidden", String(!st.echoOpen)); }
+    if (lau) { const hide = st.echoOpen || !st.showL; lau.inert = hide; lau.setAttribute("aria-hidden", String(hide)); }
+    const lock = st.demoOpen || st.echoOpen;
+    if (lock !== !!this.locked) { this.locked = lock; document.body.style.overflow = lock ? "hidden" : ""; }
+    if (st.echoOpen && !prev.echoOpen) this.later(() => { const i = document.getElementById("echo-input"); if (i) i.focus(); }, 700);
+    if (!st.echoOpen && prev.echoOpen && lau) lau.focus({ preventScroll: true });
+    if (st.msgs.length !== prev.n || st.typing !== prev.typing) { const s = document.getElementById("echo-scroll"); if (s) s.scrollTop = s.scrollHeight; }
+    this.snap = { echoOpen: st.echoOpen, n: st.msgs.length, typing: st.typing };
+  }
+  componentDidUpdate() { if (this.root) this.sync(); }
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.onScroll); window.removeEventListener("resize", this.onResize); window.removeEventListener("keydown", this.onKeyDown);
+    clearInterval(this.t); clearInterval(this.ck);
+    if (this.timers) this.timers.forEach(clearTimeout);
+    if (this.io) this.io.disconnect(); if (this.io2) this.io2.disconnect();
+    document.body.style.overflow = "";
+  }
+
+  openDemo = e => {
+    if (e) e.preventDefault(); clearInterval(this.t);
+    const script = this.DATA.demo; let i = 0;
+    this.setState({ demoOpen: true, lines: [] });
+    this.t = setInterval(() => { if (i >= script.length) return clearInterval(this.t); const l = script[i++]; this.setState(s => ({ lines: [...s.lines, l] })); }, 650);
+  };
+  closeDemo = e => { if (e) e.preventDefault(); clearInterval(this.t); this.setState({ demoOpen: false }); };
+  openEcho = e => { if (e) e.preventDefault(); this.setState({ echoOpen: true }); };
+  toggleEcho = e => { if (e) e.preventDefault(); this.setState(s => ({ echoOpen: !s.echoOpen })); };
+  closeEcho = e => { if (e) e.preventDefault(); this.setState({ echoOpen: false }); };
+  send = async raw => {
+    const text = String(raw || "").trim().slice(0, 300);
+    if (!text || this.state.typing) return;
+    this.setState(s => ({ msgs: [...s.msgs, { who: "YOU", text }], input: "", typing: true }));
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), ECHO_TIMEOUT_MS);
+    let reply = "", tool = "";
+    try {
+      const res = await fetch(ECHO_API + "/echo/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-username": DEMO_USER },
+        body: JSON.stringify({ message: text }),
+        signal: ctrl.signal
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        const detail = typeof data.detail === "string" ? data.detail : "no details";
+        reply = "Echo hit a backend error (" + res.status + "): " + detail;
+      } else {
+        reply = data.reply || "(Echo returned an empty answer, try rephrasing.)";
+        tool = (data.tools && data.tools.length) ? data.tools.join(" → ") : "";
+      }
+    } catch (e) {
+      console.error("[proto-phoros] echo request failed:", e);
+      reply = e && e.name === "AbortError"
+        ? "Echo timed out after " + Math.round(ECHO_TIMEOUT_MS / 1000) + "s. Check the uvicorn terminal for the cause."
+        : "Can't reach the backend at " + ECHO_API + ". Start it with `uvicorn main:app --reload` from the app folder.";
+    } finally {
+      clearTimeout(timer);
+    }
+    this.setState(s => ({ typing: false, msgs: [...s.msgs, { who: "ECHO", text: reply, tool }] }));
+  };
+  onInput = e => this.setState({ input: e.target.value.slice(0, 300) });
+  onKey = e => { if (e.key === "Enter" && !(e.nativeEvent && e.nativeEvent.isComposing)) { e.preventDefault(); this.send(e.target.value); } };
+  sendClick = e => { e.preventDefault(); this.send(this.state.input); };
+
+  renderVals() {
+    const st = this.state, D = this.DATA, L = st.live, { A, T } = this.C, open = st.echoOpen, hideL = open || !st.showL;
+    return { ...(L ? L.chart : D.chart),
+      logoRects: D.logoRects, echoRects: D.echoRects,
+      donut: L ? L.donut : D.donut, units: L ? L.units : D.units, ticker: D.ticker, tree: D.tree, modules: D.modules,
+      total: L ? L.total : D.total, clock: st.clock, city: st.city,
+      chartLabel: L ? L.chartLabel : "5.56×45 M855A1 · Monthly demand · 2nd Bn",
+      ledger: (L ? L.ledgers : D.ledgers)[st.ledgerTab],
+      tabs: D.tabNames.map((n, i) => ({ n, col: st.ledgerTab === i ? T : "#8b8f8c", bd: st.ledgerTab === i ? A : "transparent", go: e => { e.preventDefault(); this.setState({ ledgerTab: i }); } })),
+      demoOpen: st.demoOpen, lines: st.lines,
+      openDemo: this.openDemo, closeDemo: this.closeDemo, openEcho: this.openEcho, closeEcho: this.closeEcho, toggleEcho: this.toggleEcho,
+      anaCols: st.narrow ? "minmax(0,1fr)" : "repeat(2,minmax(0,1fr))", linkDisplay: st.narrow ? "none" : "inline",
+      panelOp: open ? 1 : 0, panelEv: open ? "auto" : "none",
+      panelT: open ? "translate(-50%,-50%)" : "translate(-50%,-50%) translateY(42vh) scale(.12)",
+      spinAnim: open ? "spinOnce 1.2s cubic-bezier(.65,0,.35,1) .1s" : "none",
+      launcherOp: hideL ? 0 : 1, launcherEv: hideL ? "none" : "auto",
+      launcherT: open ? "rotate(360deg) scale(.2)" : st.showL ? "none" : "translateY(40px) scale(.6)",
+      ringDur: st.typing ? "2s" : "24s",
+      typing: st.typing, input: st.input,
+      msgs: st.msgs.map(m => { const u = m.who === "YOU"; return { ...m, hasTool: !!m.tool, align: u ? "flex-end" : "flex-start", bg: u ? T : "#141719", fg: u ? "#08090a" : T }; }),
+      chips: D.chipTexts.map(t => ({ t, go: e => { e.preventDefault(); this.send(t); } })),
+      onInput: this.onInput, onKey: this.onKey, sendClick: this.sendClick
+    };
+  }
+}
+</script>
+</body>
+</html>
